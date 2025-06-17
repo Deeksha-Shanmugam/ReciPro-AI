@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Prediction History</h2>
+        <a href="{{ url_for('export_history') }}" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">
+            Export CSV
+        </a>
+    </div>
+
+    {% if predictions %}
+    <div class="overflow-x-auto">
+        <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="p-3 text-left">Person ID</th>
+                    <th class="p-3 text-left">Risk Level</th>
+                    <th class="p-3 text-left">Risk Probability</th>
+                    <th class="p-3 text-left">Prediction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="p-3">{{ prediction.person_id }}</td>
+                    <td class="p-3">
+                        <span class="px-2 py-1 rounded {{ risk_labels.get(prediction.risk_level, 'bg-gray-100') }}">
+                            {{ prediction.risk_level }}
+                        </span>
+                    </td>
+                    <td class="p-3">{{ (prediction.prediction_result * 100)|round(2) }}%</td>
+                    <td class="p-3">{{ prediction.prediction_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="bg-gray-100 p-4 rounded-md text-center">
+        <p class="text-gray-600">No prediction history found.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

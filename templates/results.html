@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <div class="max-w-xl mx-auto bg-white shadow-md rounded-lg p-6 mt-8">
+        <h2 class="text-2xl font-bold mb-4 text-center">Recidivism Risk Assessment Results</h2>
+        
+        <div class="mb-4">
+            <p class="text-gray-600">Person ID: <span class="font-semibold">{{ prediction.person_id }}</span></p>
+            <p class="text-gray-600">Prediction Date: <span class="font-semibold">{{ prediction.prediction_date }}</span></p>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-2">Risk Assessment</h3>
+            <div class="p-4 rounded-md {{ risk_labels.get(prediction.risk_level, 'bg-gray-100') }}">
+                <p class="font-bold text-center text-xl">{{ prediction.risk_level }}</p>
+                <p class="text-center mt-2">
+                    Probability: {{ (prediction.risk_probability)|round(2) }}%
+                </p>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <a href="{{ url_for('predict') }}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mr-2">
+                New Assessment
+            </a>
+            <a href="{{ url_for('history') }}" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600">
+                View History
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

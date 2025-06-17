@@ -1,0 +1,140 @@
+<!-- templates/predict.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+    <h2 class="text-2xl font-bold mb-4">New Risk Assessment</h2>
+    
+    <form method="POST" action="{{ url_for('predict') }}" class="space-y-4">
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="Person_ID">
+                Person ID
+            </label>
+            <input type="text" name="Person_ID" id="Person_ID" required
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="Sex_Code_Text">
+                Sex
+            </label>
+            <select name="Sex_Code_Text" id="Sex_Code_Text" required
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="Ethnic_Code_Text">
+                Ethnicity
+            </label>
+            <select name="Ethnic_Code_Text" id="Ethnic_Code_Text" required
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="Caucasian">Caucasian</option>
+                <option value="African-American">African-American</option>
+                <option value="Hispanic">Hispanic</option>
+                <option value="Asian">Asian</option>
+                <option value="Native American">Native American</option>
+                <option value="Other">Other</option>
+                <option value="Arabic">Arabic</option>
+                <option value="Oriental">Oriental</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="DateOfBirth">
+                Date of Birth
+            </label>
+            <input type="date" name="DateOfBirth" id="DateOfBirth" required
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="MaritalStatus">
+                Marital Status
+            </label>
+            <select name="MaritalStatus" id="MaritalStatus" required
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="LegalStatus">
+                Legal Status
+            </label>
+            <select name="LegalStatus" id="LegalStatus" required
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="Probation Violator">Probation Violator</option>
+                <option value="Parole Violator">Parole</option>
+                <option value="Pretrial">Pretrial</option>
+                <option value="Post Sentence">Post Sentence</option>
+                <option value="Deferred Sentencing">Deferred Sentencing</option>
+                <option value="Other">Other</option>
+                <option value="Conditional Release">Conditional Release</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="CustodyStatus">
+                Custody Status
+            </label>
+            <select name="CustodyStatus" id="CustodyStatus" required
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="Pretrial Defendant">Pretrial Defendant</option>
+                <option value="Jail Inmate">Jail Inmate</option>
+                <option value="Probation">Probation</option>
+                <option value="Parole">Parole</option>
+                <option value="Prison Inmate">Prison Inmate</option>
+                <option value="Residential Program">Residential Program</option>
+
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="RecSupervisionLevel">
+                Supervision Level (1-10)
+            </label>
+            <input type="number" name="RecSupervisionLevel" id="RecSupervisionLevel" required
+                   min="1" max="10"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="RawScore">
+                Raw Assessment Score
+            </label>
+            <input type="number" name="RawScore" id="RawScore" required
+                   step="0.1"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="AssessmentType">
+                Assessment Type
+            </label>
+            <select name="AssessmentType" id="AssessmentType" required
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="New">New</option>
+                <option value="Copy">Copy</option>
+            </select>
+        </div>
+
+        <div class="flex items-center justify-between mt-6">
+            <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Submit Assessment
+            </button>
+            <a href="{{ url_for('history') }}"
+               class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                View History
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
