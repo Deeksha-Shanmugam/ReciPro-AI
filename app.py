@@ -198,15 +198,7 @@ def export_history():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all() 
-    #data_path = 'D:\\Data privacy and security analytics\\CAT 1\\data\\sampledata.csv'  # Replace with your actual data path
-    data_path = 'D:\\Data privacy and security analytics\\CAT 1\\data\\subset2.csv'
+    data_path = 'D:\\Data privacy and security analytics\\CAT 1\\data\\subset2.csv' # Replace with your actual data path
     init_model(data_path)  # Initialize once before starting Flask
     app.run(debug=True, use_reloader=False)
 
-'''
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-        init_model()  # Initialize the model before starting the app
-    app.run(debug=True)
-'''
